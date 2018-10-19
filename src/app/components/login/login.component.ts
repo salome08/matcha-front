@@ -36,10 +36,11 @@ export class LoginComponent implements OnInit {
     if (this.formSignUp.invalid) return;
 
     this.usersService.signup(this.formSignUp.value).subscribe((res) => {
-      this.message = 'Ok';
+      this.message = 'Ok from other';
     }, (err) => {
       this.message = 'Une erreur est survenue';
     }, () => this.formSignUp.reset());
+
     console.log(this.formSignUp.value);
   }
 }
