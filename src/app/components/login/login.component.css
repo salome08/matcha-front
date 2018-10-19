@@ -1,0 +1,13 @@
+.test {
+  display: flex;
+  flex-direction: column;
+}
+
+.inputEmail {
+  margin: 2em;
+}
+
+.button-login {
+  display: flex;
+  justify-content: center;
+}
