@@ -1,0 +1,13 @@
+.test {
+  display: flex;
+  flex-direction: column;
+}
+
+.input {
+  margin: 2em;
+}
+
+.button-signup {
+  display: flex;
+  justify-content: center;
+}

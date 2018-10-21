@@ -9,38 +9,36 @@ import { UsersService } from '../../services/users/users.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  formSignUp: FormGroup;
-  hide = false;
+  formLogin: FormGroup;
+  emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  hide = true;
   message = '';
   constructor(private usersService: UsersService) { }
 
   ngOnInit(): void {
-    this.formSignUp = this.buildForm();
+    this.formLogin = this.buildForm();
   }
 
   buildForm(): FormGroup {
     return new FormGroup({
-      'email': new FormControl(null, [
-        Validators.email,
-        Validators.required
-      ]),
+      'email': new FormControl(null, Validators.compose([
+        Validators.pattern(this.emailRegex)
+      ])),
       'password': new FormControl(null, [
-        Validators.minLength(8),
-        Validators.maxLength(55),
-        Validators.required
+        Validators.maxLength(15),
       ])
     });
   }
 
   submit(): void {
-    if (this.formSignUp.invalid) return;
+    if (this.formLogin.invalid) { return; }
 
-    this.usersService.signup(this.formSignUp.value).subscribe((res) => {
+    this.usersService.login(this.formLogin.value).subscribe((res) => {
       this.message = 'Ok from other';
     }, (err) => {
       this.message = 'Une erreur est survenue';
-    }, () => this.formSignUp.reset());
+    }, () => this.formLogin.reset());
 
-    console.log(this.formSignUp.value);
+    console.log(this.formLogin.value);
   }
 }

@@ -19,13 +19,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './components/header/header.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
+import { AuthentificatorComponent } from './components/authentificator/authentificator.component';
+import { ApiService } from './services/users/api.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    AuthentificatorComponent
   ],
   imports: [
     BrowserModule,
@@ -41,8 +44,8 @@ import { SignupComponent } from './components/signup/signup.component';
     MatInputModule,
     MatTabsModule
   ],
-  providers: [],
+  providers: [ApiService],
   bootstrap: [AppComponent],
-  exports: [LoginComponent]
+  // exports: [LoginComponent]
 })
 export class AppModule { }

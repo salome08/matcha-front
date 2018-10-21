@@ -1,5 +1,35 @@
-<mat-tab-group>
-  <mat-tab label="LogIn"> <app-login></app-login></mat-tab>
-  <mat-tab label="SignUp"> Content 2 </mat-tab>
-</mat-tab-group>
-<router-outlet></router-outlet>
+<form [formGroup]="formSignup" class="test" (ngSubmit)="registerUser(this.formSignup.value)">
+  <mat-form-field color="accent">
+    <input matInput placeholder="First Name" formControlName="firstname">
+    <mat-error *ngIf="formSignup.get('firstname').invalid">You must enter a value</mat-error>
+  </mat-form-field>
+
+  <mat-form-field color="accent">
+    <input matInput placeholder="Last Name" formControlName="lastname">
+    <mat-error *ngIf="formSignup.get('lastname').invalid">You must enter a value</mat-error>
+  </mat-form-field>
+
+  <mat-form-field color="accent">
+    <input matInput placeholder="Login" formControlName="login">
+    <mat-error *ngIf="formSignup.get('login').invalid">You must enter a value </mat-error>
+  </mat-form-field>
+
+  <mat-form-field color="accent">
+    <input matInput placeholder="Password" formControlName="password" [type]="hide ? 'password' : 'text'">
+    <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    <mat-error *ngIf="formSignup.get('password').invalid">You must enter a value</mat-error>
+  </mat-form-field>
+
+  <mat-form-field color="accent">
+    <input matInput placeholder="Email" formControlName="email">
+    <mat-error *ngIf="formSignup.get('email').invalid">You must enter a value</mat-error>
+  </mat-form-field>
+
+  <div class="button-signup">
+    <button type="submit" [disabled]="formSignup.invalid" mat-stroked-button color="accent">Sign Up</button>
+  </div>
+</form>
+
+<div *ngIf="message">
+  <span>{{message}}</span>
+</div>

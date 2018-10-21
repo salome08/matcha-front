@@ -1,17 +1,17 @@
-<form [formGroup]="formSignUp" (ngSubmit)="submit()" class="test">
-  <mat-form-field class="inputEmail">
+<form [formGroup]="formLogin" (ngSubmit)="submit()" class="test">
+  <mat-form-field color="accent">
     <input matInput placeholder="Enter your email" formControlName="email">
-    <mat-error *ngIf="formSignUp.get('email').invalid">Email invalide</mat-error>
-    <mat-error *ngIf="formSignUp.get('email').required">Email obligatoire</mat-error>
+    <mat-error *ngIf="formLogin.get('email').invalid">Email invalide</mat-error>
+    <!--<mat-error *ngIf="formLogin.get('email').required">Email obligatoire</mat-error>-->
   </mat-form-field>
 
-  <mat-form-field>
+  <mat-form-field color="accent">
   <input matInput formControlName="password" placeholder="Enter your password" [type]="hide ? 'password' : 'text'">
   <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
   </mat-form-field>
 
   <div class="button-login">
-    <button type="submit" [disabled]="formSignUp.invalid" mat-stroked-button color="primary">Send</button>
+    <button type="submit" [disabled]="formLogin.invalid" mat-stroked-button color="accent">Send</button>
   </div>
 </form>
 
