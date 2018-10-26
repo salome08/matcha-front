@@ -1,4 +1,5 @@
-<form [formGroup]="formSignup" class="test" (ngSubmit)="registerUser(this.formSignup.value)">
+<div class="myBody">
+<form [formGroup]="formSignup" class="form" (ngSubmit)="registerUser(this.formSignup.value)">
   <mat-form-field color="accent">
     <input matInput placeholder="First Name" formControlName="firstname">
     <mat-error *ngIf="formSignup.get('firstname').invalid">You must enter a value</mat-error>
@@ -25,11 +26,15 @@
     <mat-error *ngIf="formSignup.get('email').invalid">You must enter a value</mat-error>
   </mat-form-field>
 
-  <div class="button-signup">
-    <button type="submit" [disabled]="formSignup.invalid" mat-stroked-button color="accent">Sign Up</button>
+  <button type="submit" mat-flat-button [disabled]="formSignup.invalid" color="accent">Sign Up</button>
+
+
+  <p>Already have an account? <a routerLink="/login">Login</a></p>
+
+  <div *ngIf="message">
+    <span>{{message}}</span>
   </div>
+
 </form>
 
-<div *ngIf="message">
-  <span>{{message}}</span>
 </div>

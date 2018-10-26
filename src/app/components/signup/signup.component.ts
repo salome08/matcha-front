@@ -46,18 +46,11 @@ export class SignupComponent implements OnInit {
   }
 
   // onSubmit(): void {
-    registerUser(user) {
-    this.apiService.registerUser(user);
+    registerUser(user): void {
+    this.apiService.registerUser(user).subscribe((res) => {
+      this.message = 'You\'re gonna received a confirmation mail';
+    },
+      (err) => { this.message = 'An error has occurred'; }
+      );
   }
-
-  // onSubmit(): void {
-  //   if (this.formSignup.invalid) { return; }
-  //
-  //   this.apiService.registerUser(this.formSignup.value).subscribe((res) => {
-  //   this.message = 'You\'re gonna received a confirmation mail'; },
-  //     (err) => { this.message = 'An error has occured'; }
-  //   );
-  //
-  //   console.log(this.formSignup.value);
-  // }
 }

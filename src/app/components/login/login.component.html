@@ -1,20 +1,24 @@
-<form [formGroup]="formLogin" (ngSubmit)="submit()" class="test">
-  <mat-form-field color="accent">
-    <input matInput placeholder="Enter your email" formControlName="email">
-    <mat-error *ngIf="formLogin.get('email').invalid">Email invalide</mat-error>
-    <!--<mat-error *ngIf="formLogin.get('email').required">Email obligatoire</mat-error>-->
-  </mat-form-field>
+<div class="myBody">
+  <form [formGroup]="formLogin" (ngSubmit)="submit()" class="form">
+    <mat-form-field color="accent">
+      <input matInput placeholder="Enter your email" formControlName="email">
+      <mat-error *ngIf="formLogin.get('email').invalid">Email invalide</mat-error>
+      <!--<mat-error *ngIf="formLogin.get('email').required">Email obligatoire</mat-error>-->
+    </mat-form-field>
 
-  <mat-form-field color="accent">
-  <input matInput formControlName="password" placeholder="Enter your password" [type]="hide ? 'password' : 'text'">
-  <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-  </mat-form-field>
+    <mat-form-field color="accent">
+    <input matInput formControlName="password" placeholder="Enter your password" [type]="hide ? 'password' : 'text'">
+    <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </mat-form-field>
 
-  <div class="button-login">
-    <button type="submit" [disabled]="formLogin.invalid" mat-stroked-button color="accent">Send</button>
+    <button type="submit" mat-flat-button [disabled]="formLogin.invalid" color="accent">Login</button>
+
+    <p>Don't have an account yet ?  <a routerLink="/register">Create an account</a></p>
+  </form>
+
+
+
+  <div *ngIf="message">
+    <span>{{ message }}</span>
   </div>
-</form>
-
-<div *ngIf="message">
-  <span>{{ message }}</span>
 </div>
