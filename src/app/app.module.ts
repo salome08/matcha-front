@@ -20,7 +20,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { AuthentificatorComponent } from './components/authentificator/authentificator.component';
-import { ApiService } from './services/users/api.service';
+import { AuthService } from './services/users/auth.service';
 
 @NgModule({
   declarations: [
@@ -44,7 +44,7 @@ import { ApiService } from './services/users/api.service';
     MatInputModule,
     MatTabsModule
   ],
-  providers: [ApiService],
+  providers: [AuthService],
   bootstrap: [AppComponent],
   // exports: [LoginComponent]
 })

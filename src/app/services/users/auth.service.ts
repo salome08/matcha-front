@@ -13,12 +13,12 @@ export interface UsersRegister {
 @Injectable({
   providedIn: 'root'
 })
-export class ApiService {
+export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  registerUser(user): Observable<any> {
-   return this.http.post('http://localhost:1234/register', user);
+  registerUser(user: UsersRegister): Observable<any> {
+   return this.http.post('http://localhost:3000/auth/signup', user);
    //   .subscribe(res => {
    //  console.log(res);
    // });
