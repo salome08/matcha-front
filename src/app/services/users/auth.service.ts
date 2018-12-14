@@ -10,6 +10,11 @@ export interface UsersRegister {
   email: string;
 }
 
+export interface UsersLogin {
+  login: string;
+  password: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -22,5 +27,9 @@ export class AuthService {
    //   .subscribe(res => {
    //  console.log(res);
    // });
+  }
+
+  logUser(user: UsersLogin): Observable<any> {
+    return this.http.post('http://localhost:3000/auth/login', user);
   }
 }

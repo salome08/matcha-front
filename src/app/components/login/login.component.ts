@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { UsersService } from '../../services/users/users.service';
+import { AuthService } from '../../services/users/auth.service';
 
 
 @Component({
@@ -10,10 +10,10 @@ import { UsersService } from '../../services/users/users.service';
 })
 export class LoginComponent implements OnInit {
   formLogin: FormGroup;
-  emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  // emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
   hide = true;
-  message = '';
-  constructor(private usersService: UsersService) { }
+  message: string;
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
     this.formLogin = this.buildForm();
@@ -21,24 +21,34 @@ export class LoginComponent implements OnInit {
 
   buildForm(): FormGroup {
     return new FormGroup({
-      'email': new FormControl(null, Validators.compose([
-        Validators.pattern(this.emailRegex)
-      ])),
+      'login': new FormControl(null, [
+        Validators.required,
+        Validators.maxLength(13),
+        Validators.minLength(3)
+      ]),
       'password': new FormControl(null, [
-        Validators.maxLength(15),
+        Validators.required
       ])
     });
   }
 
-  submit(): void {
-    if (this.formLogin.invalid) { return; }
-
-    this.usersService.login(this.formLogin.value).subscribe((res) => {
-      this.message = 'Ok from other';
-    }, (err) => {
-      this.message = 'Une erreur est survenue';
-    }, () => this.formLogin.reset());
-
-    console.log(this.formLogin.value);
+  logUser(user): void {
+    this
+      .authService
+      .logUser(user)
+      .subscribe((res) => {
+      this
+        .message = res.message;
+      },
+        (err) => {
+      this
+        .message = err.error.message;
+      });
   }
 }
+// () =>
+//   this
+//     .formLogin
+//     .reset());
+//
+// console.log(this.formLogin.value);
